@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 
 const List = () => {
 
-
   const [isMoved, setisMoved] = useState(false);
   const [slideNumber, setslideNumber] = useState(0);
 

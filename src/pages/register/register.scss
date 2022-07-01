@@ -9,8 +9,10 @@
       url("https://images.pexels.com/photos/33129/popcorn-movie-party-entertainment.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
     background-size: cover;
     position: relative;
-  
+
     .top {
+      position: relative;
+      z-index: 1;
       .wrapper {
         padding: 20px 50px;
         display: flex;
@@ -30,6 +32,7 @@
           font-size: 16px;
           font-weight: 500;
           cursor: pointer;
+          
         }
       }
     }
@@ -67,23 +70,44 @@
         margin-top: 20px;
         height: 50px;
         border-radius: 5px;
-  
+      }
+
+      .form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
         input{
-            flex: 9;
-            height: 100%;
-            border: none;
-            padding: 0 10px;
+          width: 100%;
+          background-color: white;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: 5px;
+          height: 50px;
+          border-radius: 5px;
+          border: none;
+          padding: 0 20px;
         }
-  
-        .registerButton{
-            flex: 3;
-            height: 100%;
-            background-color: red;
-            border: none;
-            color: white;
-            font-size: 22px;
-            cursor: pointer;
+        .registerbutton{
+          background-color: red;
+          border-radius: 5px;
+          border: none;
+          color: white;
+          font-size: 22px;
+          cursor: pointer;
         }
       }
+      button{
+        margin-top: 10px;
+        border-radius: 5px;
+        background-color: red;
+        border: none;
+        color: white;
+        font-size: 22px;
+        cursor: pointer;
+        
+      }
+
     }
   }

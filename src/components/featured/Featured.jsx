@@ -7,7 +7,8 @@ const Featured = ({ type }) => {
   return (
     <div className='featured'>
 
-      {type && (
+
+       {/* {type && (
         <div className="category">
           <span>{type === "movie" ? "Movies" : "Series"}</span>
           <select name="genre" id="genre">
@@ -27,7 +28,7 @@ const Featured = ({ type }) => {
             <option value="documentary">Documentary</option>
           </select>
         </div>
-      )}
+      )} */}
 
         <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="featured" />
 

@@ -1,22 +1,31 @@
-import { useRef } from "react";
 import { useState } from "react";
 import "./register.scss";
 import { Link } from 'react-router-dom';
 
+import { useNavigate } from "react-router-dom";
+import { useUserAuth } from "../../context/UserAuthContext"
 
 export default function Register() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const emailRef = useRef();
-  const passwordRef = useRef();
+  const [showPassword, setShowPassword] = useState(false);
+  const [formValues, setFormValues] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleStart = () => {
-    setEmail(emailRef.current.value);
+  const { signUp } = useUserAuth();
+  const navigate = useNavigate();
+  const handleSignIn = async () => {
+    try {
+      const { email, password } = formValues;
+      await signUp(email, password);
+      alert("Login Success");
+      navigate("/");
+    } catch (error) {
+      alert(error.message);
+    }
   };
-  const handleFinish = () => {
-    setPassword(passwordRef.current.value);
-  };
+
   return (
     <div className="register">
       <div className="top">
@@ -33,22 +42,38 @@ export default function Register() {
       </div>
       <div className="container">
         <h1>Unlimited movies, TV shows, and more.</h1>
-        
-        {!email ? (
-          <div className="input">
-            <input type="email" placeholder="email address" ref={emailRef} />
-            <button className="registerButton" onClick={handleStart}>
-              Get Started
-            </button>
+          <div className="form">
+            <input
+              type="email"
+              placeholder="Email address"
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  [e.target.name]: e.target.value,
+                })
+              }
+              name="email"
+              value={formValues.email}
+            />
+            {showPassword && (
+              <input
+                type="password"
+                placeholder="Password"
+                onChange={(e) =>
+                  setFormValues({
+                    ...formValues,
+                    [e.target.name]: e.target.value,
+                  })
+                }
+                name="password"
+                value={formValues.password}
+              />
+            )}
+            {!showPassword && (
+              <button className="registerbutton" onClick={() => setShowPassword(true)}>Get Started</button>
+            )}
           </div>
-        ) : (
-          <form className="input">
-            <input type="password" placeholder="password" ref={passwordRef} />
-            <button className="registerButton" onClick={handleFinish}>
-              Start
-            </button>
-          </form>
-        )}
+          {showPassword && <button onClick={handleSignIn}>Sign Up</button>}
       </div>
     </div>
   );
